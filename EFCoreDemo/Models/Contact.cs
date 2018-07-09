@@ -12,5 +12,11 @@ namespace EFCoreDemo.Models
         public string Email { get; set; }
 
         public string PhoneNumber { get; set; }
+
+        public string StreetName { get; set; }
+
+        public int StreetNumber { get; set; }
+
+        public int PostalCode { get; set; }
     }
 }
