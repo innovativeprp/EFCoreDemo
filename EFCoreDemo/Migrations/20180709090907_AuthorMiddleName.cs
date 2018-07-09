@@ -2,21 +2,21 @@
 
 namespace EFCoreDemo.Migrations
 {
-    public partial class AddContactPhoneNumber : Migration
+    public partial class AuthorMiddleName : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<string>(
-                name: "PhoneNumber",
-                table: "Contacts",
+                name: "MiddleName",
+                table: "Authors",
                 nullable: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "PhoneNumber",
-                table: "Contacts");
+                name: "MiddleName",
+                table: "Authors");
         }
     }
 }

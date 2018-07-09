@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EFCoreDemo.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20180709055918_AddContactPhoneNumber")]
-    partial class AddContactPhoneNumber
+    [Migration("20180709064749_InitalBookMigration")]
+    partial class InitalBookMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,42 +20,21 @@ namespace EFCoreDemo.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("EFCoreDemo.Models.Contact", b =>
+            modelBuilder.Entity("EFCoreDemo.Models.Book", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Email")
-                        .IsRequired();
+                    b.Property<string>("Author");
 
-                    b.Property<string>("FirstName")
-                        .IsRequired();
+                    b.Property<string>("Isbn");
 
-                    b.Property<string>("LastName")
-                        .IsRequired();
-
-                    b.Property<string>("PhoneNumber");
+                    b.Property<string>("Title");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Contacts");
-                });
-
-            modelBuilder.Entity("EFCoreDemo.Models.ToDo", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<bool>("Completed");
-
-                    b.Property<string>("Text")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ToDos");
+                    b.ToTable("Books");
                 });
 #pragma warning restore 612, 618
         }

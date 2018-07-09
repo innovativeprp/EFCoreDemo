@@ -4,14 +4,16 @@ using EFCoreDemo.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EFCoreDemo.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180709070705_AddAuthorWithFirstNameLastnameCompositeKey")]
+    partial class AddAuthorWithFirstNameLastnameCompositeKey
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -26,8 +28,6 @@ namespace EFCoreDemo.Migrations
                     b.Property<string>("LastName");
 
                     b.Property<DateTime>("Dob");
-
-                    b.Property<string>("MiddleName");
 
                     b.Property<string>("Nationality");
 
@@ -51,11 +51,6 @@ namespace EFCoreDemo.Migrations
                         .HasMaxLength(32);
 
                     b.HasKey("Id");
-
-                    b.HasIndex("Isbn")
-                        .IsUnique()
-                        .HasName("UniqueIsbn")
-                        .HasFilter("[Isbn] IS NOT NULL");
 
                     b.ToTable("Books");
                 });

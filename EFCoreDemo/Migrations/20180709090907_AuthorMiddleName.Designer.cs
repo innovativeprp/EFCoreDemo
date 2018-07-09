@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EFCoreDemo.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20180709060321_AddTodoDates")]
-    partial class AddTodoDates
+    [Migration("20180709090907_AuthorMiddleName")]
+    partial class AuthorMiddleName
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,46 +21,45 @@ namespace EFCoreDemo.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("EFCoreDemo.Models.Contact", b =>
+            modelBuilder.Entity("EFCoreDemo.Models.Author", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<string>("FirstName");
 
-                    b.Property<string>("Email")
-                        .IsRequired();
+                    b.Property<string>("LastName");
 
-                    b.Property<string>("FirstName")
-                        .IsRequired();
+                    b.Property<DateTime>("Dob");
 
-                    b.Property<string>("LastName")
-                        .IsRequired();
+                    b.Property<string>("MiddleName");
 
-                    b.Property<string>("PhoneNumber");
+                    b.Property<string>("Nationality");
 
-                    b.HasKey("Id");
+                    b.HasKey("FirstName", "LastName");
 
-                    b.ToTable("Contacts");
+                    b.ToTable("Authors");
                 });
 
-            modelBuilder.Entity("EFCoreDemo.Models.ToDo", b =>
+            modelBuilder.Entity("EFCoreDemo.Models.Book", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<bool>("Completed");
+                    b.Property<string>("Author");
 
-                    b.Property<DateTime>("CompletedAt");
+                    b.Property<string>("Isbn")
+                        .HasMaxLength(10);
 
-                    b.Property<DateTime>("CreatedAt");
-
-                    b.Property<string>("Text")
-                        .IsRequired();
+                    b.Property<string>("Title")
+                        .HasMaxLength(32);
 
                     b.HasKey("Id");
 
-                    b.ToTable("ToDos");
+                    b.HasIndex("Isbn")
+                        .IsUnique()
+                        .HasName("UniqueIsbn")
+                        .HasFilter("[Isbn] IS NOT NULL");
+
+                    b.ToTable("Books");
                 });
 #pragma warning restore 612, 618
         }
