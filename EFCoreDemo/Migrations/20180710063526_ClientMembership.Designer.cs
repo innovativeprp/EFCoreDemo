@@ -4,14 +4,16 @@ using EFCoreDemo.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EFCoreDemo.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180710063526_ClientMembership")]
+    partial class ClientMembership
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -104,37 +106,11 @@ namespace EFCoreDemo.Migrations
                     b.ToTable("Memberships");
                 });
 
-            modelBuilder.Entity("EFCoreDemo.Models.PersonalLibrary", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("ClientId");
-
-                    b.Property<DateTime>("CreatedAt");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ClientId")
-                        .IsUnique();
-
-                    b.ToTable("PersonalLibraries");
-                });
-
             modelBuilder.Entity("EFCoreDemo.Models.Membership", b =>
                 {
                     b.HasOne("EFCoreDemo.Models.Client", "Client")
                         .WithOne("Membership")
                         .HasForeignKey("EFCoreDemo.Models.Membership", "ClientId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("EFCoreDemo.Models.PersonalLibrary", b =>
-                {
-                    b.HasOne("EFCoreDemo.Models.Client", "Client")
-                        .WithOne("PersonalLibrary")
-                        .HasForeignKey("EFCoreDemo.Models.PersonalLibrary", "ClientId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

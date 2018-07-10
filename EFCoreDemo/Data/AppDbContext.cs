@@ -12,7 +12,9 @@ namespace EFCoreDemo.Data
         }
         public DbSet<Book> Books { get; set; }
         public DbSet<Author> Authors { get; set; }
-
+        public DbSet<Client> Clients { get; set; }
+        public DbSet<Membership> Memberships { get; set; }
+        public DbSet<PersonalLibrary> PersonalLibraries { get; set; }
         //Restricting max length by fluent Api
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
