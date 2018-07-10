@@ -1,5 +1,7 @@
 ﻿using EFCoreDemo.Models;
 using Microsoft.EntityFrameworkCore;
+using System;
+
 namespace EFCoreDemo.Data
 {
     public class AppDbContext:DbContext
@@ -22,6 +24,9 @@ namespace EFCoreDemo.Data
             modelBuilder.Entity<Book>().HasIndex(b => b.Isbn).HasName("UniqueIsbn").IsUnique();
 
             modelBuilder.Entity<Book>().Ignore(b => b.TestProperty);
+
+            //Shadow Properties: These properties are not visible in the model class.
+            modelBuilder.Entity<Book>().Property<DateTime>("CreatedAt").HasDefaultValueSql("getdate()");
 
             
         }
