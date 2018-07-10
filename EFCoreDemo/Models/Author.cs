@@ -10,6 +10,9 @@ namespace EFCoreDemo.Models
     public class Author
     {
         [Required]
+        [Key]
+        public int Id { get; set; }
+        [Required]
         public string FirstName { get; set; }
 
         public string MiddleName { get; set; }
@@ -20,6 +23,8 @@ namespace EFCoreDemo.Models
         public DateTime Dob { get; set; }
 
         public string Nationality { get; set; }
+
+        public List<Book> Books { get; set; }
 
         [NotMapped]
         public string FullName

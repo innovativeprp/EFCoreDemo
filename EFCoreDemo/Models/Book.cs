@@ -8,17 +8,21 @@ namespace EFCoreDemo.Models
 {
     public class Book
     {
+       
         public int Id { get; set; }
+
+        public int AuthorId { get; set; }
+
         [MaxLength(32)]
         public string Title { get; set; }
-        public string  Author { get; set; }
+        public Author  Author { get; set; }
         public string Isbn { get; set; }
         
         public string TestProperty
         {
             get
             {
-                return $"{Author} - {Title}";
+                return $"{Author.FullName} - {Title}";
             }
         }
     }
