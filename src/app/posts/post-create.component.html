@@ -1,0 +1,6 @@
+<mat-card class="postMessages">
+  <mat-form-field class="full-width" appearance="fill">
+    <textarea [(ngModel)]="message" matInput></textarea>
+  </mat-form-field>
+  <button (click)="postMessage()" mat-raised-button color="accent">Save</button>
+</mat-card>
